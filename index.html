@@ -749,23 +749,7 @@
                     }
                 }
                 
-                if (/\\frac\{[^}]+\}\{[^}]+\}/g.test(line)) {
-                    const fracMatches = line.matchAll(/\\frac\{([^}]+)\}\{([^}]+)\}/g);
-                    for (const fracMatch of fracMatches) {
-                        const num = fracMatch[1];
-                        const den = fracMatch[2];
-                        if (/^\d+$/.test(num) && /^\d+$/.test(den)) {
-                            if (parseInt(num) < parseInt(den) && parseInt(den) <= 10) {
-                                issues.push({
-                                    type: 'warning',
-                                    title: '简单分数可简化',
-                                    desc: `建议将 \\frac{${num}}{${den}} 简化为 ${num}/${den}`,
-                                    line: lineNum
-                                });
-                            }
-                        }
-                    }
-                }
+
             }
             
             const displayMathRegex = /\$\$([\s\S]*?)\$\$/g;
